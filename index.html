@@ -77,7 +77,12 @@
             <button id="no" onmouseover="moveButton()">Hayır</button>
         </div>
     </div>
-    
+
+    <!-- GİZLİ ŞARKI -->
+    <audio id="background-music" loop>
+        <source src="https://github.com/Lemmerinn/dilerim-kii/raw/refs/heads/main/Dolu%20Kadehi%20Ters%20Tut%20-%20Dilerim%20Ki%20(Official%20Audio).mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         function createHeart() {
             let heart = document.createElement("div");
@@ -99,15 +104,25 @@
 
         function moveButton() {
             let button = document.getElementById("no");
-            let maxWidth = document.querySelector(".btn-container").clientWidth - button.offsetWidth;
-            let maxHeight = document.querySelector(".btn-container").clientHeight - button.offsetHeight;
+            let container = document.querySelector(".btn-container");
+
+            let maxWidth = container.clientWidth - button.offsetWidth;
+            let maxHeight = container.clientHeight - button.offsetHeight;
             
             let newX = Math.random() * maxWidth;
             let newY = Math.random() * maxHeight;
-            
+
             button.style.left = newX + "px";
             button.style.top = newY + "px";
         }
+
+        // Kullanıcı etkileşimi olmadan müzik başlamaz, bu yüzden tıklama ile başlatılıyor
+        document.addEventListener("click", function() {
+            let music = document.getElementById("background-music");
+            if (music.paused) {
+                music.play().catch(error => console.log("Otomatik oynatma engellendi:", error));
+            }
+        });
     </script>
 </body>
 </html>
