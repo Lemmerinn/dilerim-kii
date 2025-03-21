@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özür Dilerim</title>
+    <style>
+        body {
+            background-color: pink;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #background-img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .heart {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .btn-container {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #no {
+            background-color: #FF6347;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Yavruuuuu özür dileriimm barisalim miiii?? 💖</h1>
+        <img id="background-img" src="Snapchat-1171738796.jpg" alt="Özür Diliyorum">
+
+        <div class="btn-container">
+            <button id="yes" onclick="alert('Beni sevdiğini biliyordum :3 😍')">Evet</button>
+            <button id="no" onmouseover="moveButton()">Hayır</button>
+        </div>
+    </div>
+    
+    <script>
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+
+            let size = Math.random() * 20 + 10;
+            heart.style.fontSize = size + "px";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = "100vh";
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function moveButton() {
+            let button = document.getElementById("no");
+            let maxWidth = document.querySelector(".btn-container").clientWidth - button.offsetWidth;
+            let maxHeight = document.querySelector(".btn-container").clientHeight - button.offsetHeight;
+            
+            let newX = Math.random() * maxWidth;
+            let newY = Math.random() * maxHeight;
+            
+            button.style.left = newX + "px";
+            button.style.top = newY + "px";
+        }
+    </script>
+</body>
+</html>
